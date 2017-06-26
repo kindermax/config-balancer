@@ -10,7 +10,10 @@ def interact(data):
     while True:
         try:
             command = input('> ')
-            config = run_command(command, config)
+            # run_command must return new config or None
+            new_config = run_command(command, config)
+            if new_config is not None:
+                config = new_config
         except (EOFError, KeyboardInterrupt):
             sys.exit()
 
@@ -26,4 +29,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # parser_args = get_parser_args()

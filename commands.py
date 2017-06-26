@@ -26,6 +26,8 @@ def command(names):
 
 
 def run_command(cmd, config):
+    """Executes the command and returns what the command will returns"""
+    cmd = cmd.strip()
     if cmd not in commands:
         print('incorrect command')
         return config
@@ -60,7 +62,6 @@ def add_service(config):
 def print_config(config):
     print('Current config:')
     pprint(config)
-    return config
 
 
 @command(['help', '?'])
@@ -71,7 +72,6 @@ def print_help(config):
     )
     commands_help = commands_help.replace('help', 'help, ?')
     print(commands_help)
-    return config
 
 
 @command('save')
@@ -82,7 +82,6 @@ def save_config(config):
         filename = os.path.abspath(args.output)
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(config, f)
-    return config
 
 
 @command('exit')
